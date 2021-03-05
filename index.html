@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Rajdhani:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <title>moveit canvas</title>
+  </head>
+  <body>
+    <canvas width="1200" height="630"></canvas>
+  </body>
+
+  <script>
+    const boxAvancei = {
+      top: 102,
+      left: 160,
+      width: 408,
+      height: 427,
+    };
+
+    const boxEstatísticas = {
+      top: 113,
+      left: 731,
+      width: 342,
+      height: 404,
+    };
+
+    class Box {
+        constructor(y, x, width, height) {
+            this.top = y;
+            this.left = x;
+            this.width = width;
+            this.height = height;
+            //aliases
+            this.x = x;
+            this.y = y;
+        }
+
+        get right() {
+            return this.left + this.width;
+        }
+
+        get bottom() {
+            return this.top + this.height;
+        }
+
+    }
+
+    function drawCanvas() {
+      const img = new Image();
+      img.src = "Logo.svg";
+
+      const canvas = document.querySelector("canvas");
+      const ctx = canvas.getContext("2d");
+
+      img.onload = () =>
+        ctx.drawImage(
+          img,
+          boxEstatísticas.left,
+          boxEstatísticas.top + boxEstatísticas.height - 50
+        );
+
+      ctx.fillStyle = "#eeeeee";
+
+      //   box avancei para o próximo nível
+      ctx.fillRect(
+        boxAvancei.left,
+        boxAvancei.top,
+        boxAvancei.width,
+        boxAvancei.height
+      );
+      //   box estatísticas
+      ctx.fillRect(
+        boxEstatísticas.left,
+        boxEstatísticas.top,
+        boxEstatísticas.width,
+        boxEstatísticas.height
+      );
+    
+    ctx.fillText('DESAFIOS', boxEstatísticas.top, boxEstatísticas.left);
+    }
+
+
+    drawCanvas();
+  </script>
+
+  <style>
+    canvas {
+      border: 1px solid gray;
+      width: 600px;
+    }
+  </style>
+</html>
