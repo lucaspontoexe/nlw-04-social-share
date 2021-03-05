@@ -48,7 +48,7 @@
     const XP = 154000;
 
     const boxAvancei = new Box(102, 160, 408, 427);
-    const boxEstatísticas = new Box(113, 731, 342, 404);
+    const box_stats = new Box(113, 731, 342, 404);
     const avanceiMiddlePoint = 364;
 
     const colors = {
@@ -71,7 +71,7 @@
       const ctx = canvas.getContext("2d");
 
       img.onload = () =>
-        ctx.drawImage(img, boxEstatísticas.left, boxEstatísticas.bottom - 50);
+        ctx.drawImage(img, box_stats.left, box_stats.bottom - 50);
 
       // fundo branco no canvas
       ctx.fillStyle = "white";
@@ -83,8 +83,8 @@
       // texto DESAFIOS e EXPERIÊNCIA
       ctx.fillStyle = colors.texts;
       ctx.font = "700 24px Inter";
-      ctx.fillText("DESAFIOS", boxEstatísticas.x, boxEstatísticas.y);
-      ctx.fillText("EXPERIÊNCIA", boxEstatísticas.x, 264);
+      ctx.fillText("DESAFIOS", box_stats.x, box_stats.y);
+      ctx.fillText("EXPERIÊNCIA", box_stats.x, 264);
 
       // texto "X Completados" e "Y xp"
       ctx.font = "500 40px Inter";
@@ -96,30 +96,30 @@
 
       // completados
       ctx.fillStyle = colors.blue1;
-      ctx.fillText(challenges_string, boxEstatísticas.left, 152);
+      ctx.fillText(challenges_string, box_stats.left, 152);
       ctx.fillStyle = colors.texts;
       ctx.fillText(
         " completados",
-        boxEstatísticas.left + desafios_medida.width,
+        box_stats.left + desafios_medida.width,
         152
       );
 
       // xp
       ctx.fillStyle = colors.blue1;
-      ctx.fillText(xp_string, boxEstatísticas.left, 303);
+      ctx.fillText(xp_string, box_stats.left, 303);
       ctx.fillStyle = colors.texts;
-      ctx.fillText(" xp", boxEstatísticas.left + xp_medida.width, 303);
+      ctx.fillText(" xp", box_stats.left + xp_medida.width, 303);
 
       ctx.lineWidth = 1.5;
       // linha divisória 1
       ctx.strokeStyle = colors.grayLine;
-      ctx.moveTo(boxEstatísticas.left, 232);
-      ctx.lineTo(boxEstatísticas.right, 232);
+      ctx.moveTo(box_stats.left, 232);
+      ctx.lineTo(box_stats.right, 232);
       ctx.stroke();
 
       // linha divisória 2
-      ctx.moveTo(boxEstatísticas.left, 383);
-      ctx.lineTo(boxEstatísticas.right, 383);
+      ctx.moveTo(box_stats.left, 383);
+      ctx.lineTo(box_stats.right, 383);
       ctx.stroke();
 
       // Texto Avancei
