@@ -57,23 +57,11 @@
       img.onload = () => 
         ctx.drawImage(img, boxEstatísticas.left, boxEstatísticas.bottom - 50);
 
-      ctx.fillStyle = "#eeeeee";
+      // fundo branco no canvas
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      //   box avancei para o próximo nível
-      ctx.fillRect(
-        boxAvancei.x,
-        boxAvancei.y,
-        boxAvancei.w,
-        boxAvancei.h
-      );
-      //   box estatísticas
-      ctx.fillRect(
-        boxEstatísticas.x,
-        boxEstatísticas.y,
-        boxEstatísticas.w,
-        boxEstatísticas.h
-      );
-
+      // textos alinhados pelo canto superior
       ctx.textBaseline = "top";
       
       // texto DESAFIOS e EXPERIÊNCIA
