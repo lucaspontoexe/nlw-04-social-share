@@ -52,16 +52,16 @@
     const avanceiMiddlePoint = 364;
 
     const colors = {
-      blue1: '#5965E0',
-      blue2: '#4953B8',
-      green: '#4CD62B',
-      red: '#E83F5B',
-      blueText: '#B2B9FF',
-      titles: '#2E384D',
-      texts: '#666666',
-      grayLine: '#DCDDE0',
-      background: '#F2F3F5',
-    }
+      blue1: "#5965E0",
+      blue2: "#4953B8",
+      green: "#4CD62B",
+      red: "#E83F5B",
+      blueText: "#B2B9FF",
+      titles: "#2E384D",
+      texts: "#666666",
+      grayLine: "#DCDDE0",
+      background: "#F2F3F5",
+    };
 
     function drawCanvas() {
       const img = new Image();
@@ -70,43 +70,45 @@
       const canvas = document.querySelector("canvas");
       const ctx = canvas.getContext("2d");
 
-      img.onload = () => 
+      img.onload = () =>
         ctx.drawImage(img, boxEstatísticas.left, boxEstatísticas.bottom - 50);
 
       // fundo branco no canvas
-      ctx.fillStyle = 'white';
+      ctx.fillStyle = "white";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // textos alinhados pelo canto superior
       ctx.textBaseline = "top";
-      
+
       // texto DESAFIOS e EXPERIÊNCIA
       ctx.fillStyle = colors.texts;
       ctx.font = "700 24px Inter";
       ctx.fillText("DESAFIOS", boxEstatísticas.x, boxEstatísticas.y);
       ctx.fillText("EXPERIÊNCIA", boxEstatísticas.x, 264);
 
-
       // texto "X Completados" e "Y xp"
       ctx.font = "500 40px Inter";
       const challenges_string = String(completedChallenges);
       const xp_string = String(XP);
-      
+
       const desafios_medida = ctx.measureText(challenges_string);
       const xp_medida = ctx.measureText(xp_string);
-      
+
       // completados
       ctx.fillStyle = colors.blue1;
       ctx.fillText(challenges_string, boxEstatísticas.left, 152);
       ctx.fillStyle = colors.texts;
-      ctx.fillText(" completados", boxEstatísticas.left + desafios_medida.width, 152);
-      
+      ctx.fillText(
+        " completados",
+        boxEstatísticas.left + desafios_medida.width,
+        152
+      );
+
       // xp
       ctx.fillStyle = colors.blue1;
       ctx.fillText(xp_string, boxEstatísticas.left, 303);
       ctx.fillStyle = colors.texts;
       ctx.fillText(" xp", boxEstatísticas.left + xp_medida.width, 303);
-      
 
       ctx.lineWidth = 1.5;
       // linha divisória 1
@@ -120,14 +122,12 @@
       ctx.lineTo(boxEstatísticas.right, 383);
       ctx.stroke();
 
-      
       // Texto Avancei
       ctx.fillStyle = colors.texts;
       ctx.textAlign = "center";
       ctx.font = "600 56px Inter";
       ctx.fillText("Avancei para", avanceiMiddlePoint, 397);
       ctx.fillText("o próximo level", avanceiMiddlePoint, 457); // 397 + line height, que é de 60px
-
 
       // número do nível
       ctx.fillStyle = "#5965E0";
@@ -140,9 +140,9 @@
       //reset shadow
       ctx.shadowColor = "#00000000";
       ctx.shadowBlur = 0;
-      
-      const measurement = ctx.measureText(String(level));
-      
+
+      const level_measurement = ctx.measureText(String(level));
+
       // folhas ao lado do nível
       const leafL = new Image();
       leafL.src = "leaf-L.svg";
@@ -150,9 +150,20 @@
       leafR.src = "leaf-R.svg";
 
       // tem que refatorar esse código de desenhar imagens
-      leafL.onload = () => ctx.drawImage(leafL, avanceiMiddlePoint - leafL.width - measurement.actualBoundingBoxLeft/2, 102);
-      leafR.onload = () => ctx.drawImage(leafR, avanceiMiddlePoint + measurement.actualBoundingBoxRight/2, 102);
-
+      leafL.onload = () =>
+        ctx.drawImage(
+          leafL,
+          avanceiMiddlePoint -
+            leafL.width -
+            level_measurement.actualBoundingBoxLeft / 2,
+          102
+        );
+      leafR.onload = () =>
+        ctx.drawImage(
+          leafR,
+          avanceiMiddlePoint + level_measurement.actualBoundingBoxRight / 2,
+          102
+        );
     }
 
     drawCanvas();
