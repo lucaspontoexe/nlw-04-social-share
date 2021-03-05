@@ -1,0 +1,14 @@
+{
+  "name": "moveit-canvas",
+  "version": "1.0.0",
+  "description": "canvas server route",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lucaspontoexe",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.7.0"
+  }
+}
