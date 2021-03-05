@@ -73,9 +73,32 @@
         boxEstatísticas.h
       );
 
+      ctx.textBaseline = "top";
+      
+      // texto DESAFIOS e EXPERIÊNCIA
+      ctx.fillStyle = "#444444";
+      ctx.font = "700 24px Inter";
+      ctx.fillText("DESAFIOS", boxEstatísticas.x, boxEstatísticas.y);
+      ctx.fillText("EXPERIÊNCIA", boxEstatísticas.x, 264);
+
+
+      // texto "X Completados" e "Y xp"
       ctx.fillStyle = "black";
-      ctx.font = "24px Inter";
-      ctx.fillText("DESAFIOS", boxEstatísticas.top, boxEstatísticas.left);
+      ctx.font = "500 40px Inter";
+      ctx.fillText("20 completados", boxEstatísticas.left, 152);
+      ctx.fillText("154000 xp", boxEstatísticas.left, 303);
+      
+
+      // linha divisória 1
+      ctx.strokeStyle = "black";
+      ctx.moveTo(boxEstatísticas.left, 232);
+      ctx.lineTo(boxEstatísticas.right, 232);
+      ctx.stroke();
+
+      // linha divisória 2
+      ctx.moveTo(boxEstatísticas.left, 383);
+      ctx.lineTo(boxEstatísticas.right, 383);
+      ctx.stroke();
     }
 
     drawCanvas();
