@@ -131,9 +131,21 @@
       ctx.shadowOffsetY = 10;
       ctx.shadowColor = "#5965E04D";
       ctx.fillText('2', avanceiMiddlePoint, 102);
+      //reset shadow
+      ctx.shadowColor = "#00000000";
+      ctx.shadowBlur = 0;
       
       const measurement = ctx.measureText('2');
-      console.log(measurement.width, measurement.actualBoundingBoxLeft, measurement.actualBoundingBoxRight);
+      
+      // folhas ao lado do nível
+      const leafL = new Image();
+      leafL.src = "leaf-L.svg";
+      const leafR = new Image();
+      leafR.src = "leaf-R.svg";
+
+      // tem que refatorar esse código de desenhar imagens
+      leafL.onload = () => ctx.drawImage(leafL, avanceiMiddlePoint - leafL.width - measurement.actualBoundingBoxLeft/2, 102);
+      leafR.onload = () => ctx.drawImage(leafR, avanceiMiddlePoint + measurement.actualBoundingBoxRight/2, 102);
 
     }
 
