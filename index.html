@@ -45,6 +45,7 @@
 
     const boxAvancei = new Box(102, 160, 408, 427);
     const boxEstatísticas = new Box(113, 731, 342, 404);
+    const avanceiMiddlePoint = 364;
 
     function drawCanvas() {
       const img = new Image();
@@ -99,6 +100,21 @@
       ctx.moveTo(boxEstatísticas.left, 383);
       ctx.lineTo(boxEstatísticas.right, 383);
       ctx.stroke();
+
+
+      // número do nível
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#5965E0";
+      ctx.font = "bold 306px Inter";
+      ctx.shadowBlur = 16;
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 10;
+      ctx.shadowColor = "#5965E04D";
+      ctx.fillText('2', avanceiMiddlePoint, 102);
+      
+      const measurement = ctx.measureText('2');
+      console.log(measurement.width, measurement.actualBoundingBoxLeft, measurement.actualBoundingBoxRight);
+
     }
 
     drawCanvas();
