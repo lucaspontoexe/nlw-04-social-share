@@ -43,6 +43,10 @@
       }
     }
 
+    const level = 23;
+    const completedChallenges = 20;
+    const XP = 154000;
+
     const boxAvancei = new Box(102, 160, 408, 427);
     const boxEstatísticas = new Box(113, 731, 342, 404);
     const avanceiMiddlePoint = 364;
@@ -85,21 +89,21 @@
 
       // texto "X Completados" e "Y xp"
       ctx.font = "500 40px Inter";
-      const desafiosCompletados = '20';
-      const quantidadeXP = '154000';
+      const challenges_string = String(completedChallenges);
+      const xp_string = String(XP);
       
-      const desafios_medida = ctx.measureText(desafiosCompletados);
-      const xp_medida = ctx.measureText(quantidadeXP);
+      const desafios_medida = ctx.measureText(challenges_string);
+      const xp_medida = ctx.measureText(xp_string);
       
       // completados
       ctx.fillStyle = colors.blue1;
-      ctx.fillText(desafiosCompletados, boxEstatísticas.left, 152);
+      ctx.fillText(challenges_string, boxEstatísticas.left, 152);
       ctx.fillStyle = colors.texts;
       ctx.fillText(" completados", boxEstatísticas.left + desafios_medida.width, 152);
       
       // xp
       ctx.fillStyle = colors.blue1;
-      ctx.fillText(quantidadeXP, boxEstatísticas.left, 303);
+      ctx.fillText(xp_string, boxEstatísticas.left, 303);
       ctx.fillStyle = colors.texts;
       ctx.fillText(" xp", boxEstatísticas.left + xp_medida.width, 303);
       
@@ -132,12 +136,12 @@
       ctx.shadowOffsetX = 0;
       ctx.shadowOffsetY = 10;
       ctx.shadowColor = "#5965E04D";
-      ctx.fillText('2', avanceiMiddlePoint, 102);
+      ctx.fillText(String(level), avanceiMiddlePoint, 102);
       //reset shadow
       ctx.shadowColor = "#00000000";
       ctx.shadowBlur = 0;
       
-      const measurement = ctx.measureText('2');
+      const measurement = ctx.measureText(String(level));
       
       // folhas ao lado do nível
       const leafL = new Image();
