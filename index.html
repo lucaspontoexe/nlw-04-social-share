@@ -15,40 +15,28 @@
   </body>
 
   <script>
-    const boxAvancei = {
-      top: 102,
-      left: 160,
-      width: 408,
-      height: 427,
-    };
-
-    const boxEstatísticas = {
-      top: 113,
-      left: 731,
-      width: 342,
-      height: 404,
-    };
-
     class Box {
-        constructor(y, x, width, height) {
-            this.top = y;
-            this.left = x;
-            this.width = width;
-            this.height = height;
-            //aliases
-            this.x = x;
-            this.y = y;
-        }
+      constructor(y, x, width, height) {
+        this.top = y;
+        this.left = x;
+        this.width = width;
+        this.height = height;
+        //aliases
+        this.x = x;
+        this.y = y;
+      }
 
-        get right() {
-            return this.left + this.width;
-        }
+      get right() {
+        return this.left + this.width;
+      }
 
-        get bottom() {
-            return this.top + this.height;
-        }
-
+      get bottom() {
+        return this.top + this.height;
+      }
     }
+
+    const boxAvancei = new Box(102, 160, 408, 427);
+    const boxEstatísticas = new Box(113, 731, 342, 404);
 
     function drawCanvas() {
       const img = new Image();
@@ -58,11 +46,7 @@
       const ctx = canvas.getContext("2d");
 
       img.onload = () =>
-        ctx.drawImage(
-          img,
-          boxEstatísticas.left,
-          boxEstatísticas.top + boxEstatísticas.height - 50
-        );
+        ctx.drawImage(img, boxEstatísticas.left, boxEstatísticas.bottom - 50);
 
       ctx.fillStyle = "#eeeeee";
 
@@ -80,10 +64,9 @@
         boxEstatísticas.width,
         boxEstatísticas.height
       );
-    
-    ctx.fillText('DESAFIOS', boxEstatísticas.top, boxEstatísticas.left);
-    }
 
+      ctx.fillText("DESAFIOS", boxEstatísticas.top, boxEstatísticas.left);
+    }
 
     drawCanvas();
   </script>
