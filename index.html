@@ -47,6 +47,18 @@
     const boxEstatísticas = new Box(113, 731, 342, 404);
     const avanceiMiddlePoint = 364;
 
+    const colors = {
+      blue1: '#5965E0',
+      blue2: '#4953B8',
+      green: '#4CD62B',
+      red: '#E83F5B',
+      blueText: '#B2B9FF',
+      titles: '#2E384D',
+      texts: '#666666',
+      grayLine: '#DCDDE0',
+      background: '#F2F3F5',
+    }
+
     function drawCanvas() {
       const img = new Image();
       img.src = "Logo.svg";
@@ -65,7 +77,7 @@
       ctx.textBaseline = "top";
       
       // texto DESAFIOS e EXPERIÊNCIA
-      ctx.fillStyle = "#444444";
+      ctx.fillStyle = colors.texts;
       ctx.font = "700 24px Inter";
       ctx.fillText("DESAFIOS", boxEstatísticas.x, boxEstatísticas.y);
       ctx.fillText("EXPERIÊNCIA", boxEstatísticas.x, 264);
@@ -80,20 +92,21 @@
       const xp_medida = ctx.measureText(quantidadeXP);
       
       // completados
-      ctx.fillStyle = "#5965E0";
+      ctx.fillStyle = colors.blue1;
       ctx.fillText(desafiosCompletados, boxEstatísticas.left, 152);
-      ctx.fillStyle = "black";
+      ctx.fillStyle = colors.texts;
       ctx.fillText(" completados", boxEstatísticas.left + desafios_medida.width, 152);
       
       // xp
-      ctx.fillStyle = "#5965E0";
+      ctx.fillStyle = colors.blue1;
       ctx.fillText(quantidadeXP, boxEstatísticas.left, 303);
-      ctx.fillStyle = "black";
+      ctx.fillStyle = colors.texts;
       ctx.fillText(" xp", boxEstatísticas.left + xp_medida.width, 303);
       
 
+      ctx.lineWidth = 1.5;
       // linha divisória 1
-      ctx.strokeStyle = "black";
+      ctx.strokeStyle = colors.grayLine;
       ctx.moveTo(boxEstatísticas.left, 232);
       ctx.lineTo(boxEstatísticas.right, 232);
       ctx.stroke();
@@ -105,6 +118,7 @@
 
       
       // Texto Avancei
+      ctx.fillStyle = colors.texts;
       ctx.textAlign = "center";
       ctx.font = "600 56px Inter";
       ctx.fillText("Avancei para", avanceiMiddlePoint, 397);
