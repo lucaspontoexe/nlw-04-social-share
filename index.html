@@ -16,6 +16,12 @@
 
   <script>
     class Box {
+      /**
+       * @param {number} y
+       * @param {number} x
+       * @param {number} width
+       * @param {number} height
+       */
       constructor(y, x, width, height) {
         this.top = y;
         this.left = x;
@@ -24,6 +30,8 @@
         //aliases
         this.x = x;
         this.y = y;
+        this.w = width;
+        this.h = height;
       }
 
       get right() {
@@ -52,19 +60,21 @@
 
       //   box avancei para o próximo nível
       ctx.fillRect(
-        boxAvancei.left,
-        boxAvancei.top,
-        boxAvancei.width,
-        boxAvancei.height
+        boxAvancei.x,
+        boxAvancei.y,
+        boxAvancei.w,
+        boxAvancei.h
       );
       //   box estatísticas
       ctx.fillRect(
-        boxEstatísticas.left,
-        boxEstatísticas.top,
-        boxEstatísticas.width,
-        boxEstatísticas.height
+        boxEstatísticas.x,
+        boxEstatísticas.y,
+        boxEstatísticas.w,
+        boxEstatísticas.h
       );
 
+      ctx.fillStyle = "black";
+      ctx.font = "24px Inter";
       ctx.fillText("DESAFIOS", boxEstatísticas.top, boxEstatísticas.left);
     }
 
