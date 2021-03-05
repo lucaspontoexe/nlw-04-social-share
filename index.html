@@ -54,7 +54,7 @@
       const canvas = document.querySelector("canvas");
       const ctx = canvas.getContext("2d");
 
-      img.onload = () =>
+      img.onload = () => 
         ctx.drawImage(img, boxEstatísticas.left, boxEstatísticas.bottom - 50);
 
       ctx.fillStyle = "#eeeeee";
@@ -101,9 +101,15 @@
       ctx.lineTo(boxEstatísticas.right, 383);
       ctx.stroke();
 
+      
+      // Texto Avancei
+      ctx.textAlign = "center";
+      ctx.font = "600 56px Inter";
+      ctx.fillText("Avancei para", avanceiMiddlePoint, 397);
+      ctx.fillText("o próximo level", avanceiMiddlePoint, 457); // 397 + line height, que é de 60px
+
 
       // número do nível
-      ctx.textAlign = "center";
       ctx.fillStyle = "#5965E0";
       ctx.font = "bold 306px Inter";
       ctx.shadowBlur = 16;
