@@ -84,10 +84,24 @@
 
 
       // texto "X Completados" e "Y xp"
-      ctx.fillStyle = "black";
       ctx.font = "500 40px Inter";
-      ctx.fillText("20 completados", boxEstatísticas.left, 152);
-      ctx.fillText("154000 xp", boxEstatísticas.left, 303);
+      const desafiosCompletados = '20';
+      const quantidadeXP = '154000';
+      
+      const desafios_medida = ctx.measureText(desafiosCompletados);
+      const xp_medida = ctx.measureText(quantidadeXP);
+      
+      // completados
+      ctx.fillStyle = "#5965E0";
+      ctx.fillText(desafiosCompletados, boxEstatísticas.left, 152);
+      ctx.fillStyle = "black";
+      ctx.fillText(" completados", boxEstatísticas.left + desafios_medida.width, 152);
+      
+      // xp
+      ctx.fillStyle = "#5965E0";
+      ctx.fillText(quantidadeXP, boxEstatísticas.left, 303);
+      ctx.fillStyle = "black";
+      ctx.fillText(" xp", boxEstatísticas.left + xp_medida.width, 303);
       
 
       // linha divisória 1
