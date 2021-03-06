@@ -8,10 +8,11 @@ const colors = require("./colors");
 http
   .createServer(async function (req, res) {
     const queryObject = url.parse(req.url, true).query;
-    console.log(queryObject);
-    await drawCanvas();
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end("Feel free to add query parameters to the end of the url");
+    // console.log(queryObject);
+    const stream = await drawCanvas();
+    res.writeHead(200, { "Content-Type": "image/png" });
+    // res.end("Feel free to add query parameters to the end of the url");
+    stream.pipe(res);
   })
   .listen(8080);
 
@@ -23,8 +24,18 @@ const XP = 154000;
 const box_stats = new Box(113, 731, 342, 404);
 const advancedTextMiddlePoint = 364;
 
+registerFont("./Inter/Inter-Bold.ttf", { family: "Inter", weight: "bold" });
+registerFont("./Inter/Inter-Medium.ttf", { family: "Inter", weight: "medium" });
+registerFont("./Inter/Inter-SemiBold.ttf", {
+  family: "Inter",
+  weight: "semibold",
+});
+registerFont("./Inter/Inter-Regular.ttf", {
+  family: "Inter",
+  weight: "regular",
+});
+
 async function drawCanvas() {
-  registerFont("./Inter.ttf", { family: "Inter" });
   const moveitLogo = await loadImage("./Logo.svg");
   const leafL = await loadImage("./leaf-L.svg");
   const leafR = await loadImage("./leaf-R.svg");
@@ -96,10 +107,6 @@ async function drawCanvas() {
   // Número do nível: preparação
   ctx.fillStyle = "#5965E0";
   ctx.font = "bold 306px Inter";
-  ctx.shadowBlur = 16;
-  ctx.shadowOffsetX = 0;
-  ctx.shadowOffsetY = 10;
-  ctx.shadowColor = "#5965E04D";
   const level_measurement = ctx.measureText(String(level));
 
   // folhas de trás
@@ -110,18 +117,24 @@ async function drawCanvas() {
       level_measurement.actualBoundingBoxLeft / 2,
     102
   );
+
   ctx.drawImage(
     leafR,
-    advancedTextMiddlePoint + level_measurement.actualBoundingBoxRight / 2,
+    advancedTextMiddlePoint + level_measurement.actualBoundingBoxRight / 4, // https://github.com/Automattic/node-canvas/issues/1703
     102
   );
 
+  ctx.shadowBlur = 16;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 10;
+  ctx.shadowColor = "#5965E04D";
   ctx.fillText(String(level), advancedTextMiddlePoint, 102);
 
   // TEST
-  const fs = require("fs");
-  const out = fs.createWriteStream(__dirname + "/test.png");
+  //   const fs = require("fs");
+  //   const out = fs.createWriteStream(__dirname + "/test.png");
   const stream = canvas.createPNGStream();
-  stream.pipe(out);
-  out.on("finish", () => console.log("The PNG file was created."));
+  //   stream.pipe(out);
+  //   out.on("finish", () => console.log("The PNG file was created."));
+  return stream;
 }
