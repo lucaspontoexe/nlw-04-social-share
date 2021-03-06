@@ -1,18 +1,18 @@
 // https://nodejs.org/en/knowledge/HTTP/clients/how-to-access-query-string-parameters/
 const http = require("http");
-const url = require("url");
+// const url = require("url");
 const { loadImage, registerFont, createCanvas } = require("canvas");
 const Box = require("./Box");
 const colors = require("./colors");
 
 http
   .createServer(async function (req, res) {
-    const queryObject = url.parse(req.url, true).query;
+    // const queryObject = url.parse(req.url, true).query;
     // console.log(queryObject);
     const stream = await drawCanvas();
     res.writeHead(200, { "Content-Type": "image/png" });
-    // res.end("Feel free to add query parameters to the end of the url");
     stream.pipe(res);
+    // res.end("Feel free to add query parameters to the end of the url");
   })
   .listen(8080);
 
@@ -130,11 +130,7 @@ async function drawCanvas() {
   ctx.shadowColor = "#5965E04D";
   ctx.fillText(String(level), advancedTextMiddlePoint, 102);
 
-  // TEST
-  //   const fs = require("fs");
-  //   const out = fs.createWriteStream(__dirname + "/test.png");
+  // node: export to png
   const stream = canvas.createPNGStream();
-  //   stream.pipe(out);
-  //   out.on("finish", () => console.log("The PNG file was created."));
   return stream;
 }
