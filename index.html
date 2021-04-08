@@ -167,6 +167,12 @@
       ctx.fillText(level, advancedTextMiddlePoint, 102);
     }
 
+    function waitFontAndDraw() {
+      if (!("fonts" in document)) return;
+      document.fonts.load("500 40px Inter").then(drawCanvas);
+    }
+
+    waitFontAndDraw();
   </script>
 
   <style>
