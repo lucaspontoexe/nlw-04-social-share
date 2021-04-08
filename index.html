@@ -52,9 +52,9 @@
       });
     }
 
-    const level = 23;
-    const completedChallenges = 20;
-    const XP = 154000;
+    const level = String(2);
+    const completedChallenges = String(20);
+    const XP = String(154000);
 
     const box_stats = new Box(113, 731, 342, 404);
     const advancedTextMiddlePoint = 364;
@@ -97,14 +97,12 @@
 
       // texto "X Completados" e "Y xp"
       ctx.font = "500 40px Inter";
-      const challengesTextMeasure = ctx.measureText(
-        String(completedChallenges)
-      );
-      const XPTextMeasure = ctx.measureText(String(XP));
+      const challengesTextMeasure = ctx.measureText(completedChallenges);
+      const XPTextMeasure = ctx.measureText(XP);
 
       // (número de desafios)
       ctx.fillStyle = colors.blue1;
-      ctx.fillText(String(completedChallenges), box_stats.left, 152);
+      ctx.fillText(completedChallenges, box_stats.left, 152);
       // completados
       ctx.fillStyle = colors.texts;
       ctx.fillText(
@@ -115,7 +113,7 @@
 
       // (número de experiência)
       ctx.fillStyle = colors.blue1;
-      ctx.fillText(String(XP), box_stats.left, 303);
+      ctx.fillText(XP, box_stats.left, 303);
       // xp
       ctx.fillStyle = colors.texts;
       ctx.fillText(" xp", box_stats.left + XPTextMeasure.width, 303);
@@ -145,7 +143,7 @@
       // Número do nível: preparação
       ctx.fillStyle = "#5965E0";
       ctx.font = "bold 306px Inter";
-      const level_measurement = ctx.measureText(String(level));
+      const level_measurement = ctx.measureText(level);
 
       // folhas de trás
       ctx.drawImage(
@@ -166,10 +164,9 @@
       ctx.shadowOffsetX = 0;
       ctx.shadowOffsetY = 10;
       ctx.shadowColor = "#5965E04D";
-      ctx.fillText(String(level), advancedTextMiddlePoint, 102);
+      ctx.fillText(level, advancedTextMiddlePoint, 102);
     }
 
-    drawCanvas();
   </script>
 
   <style>
