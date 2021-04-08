@@ -1,5 +1,5 @@
 # nlw-04-social-share
-![Thumbnail do Protótipo](.github/)
+![Thumbnail do Protótipo](.github/Thumb Twitter - One number.svg)
 Prova de conceito de um gerador de imagens para Open Graph usando canvas.
 As imagens poderiam ser usadas como _thumbnail_ para links compartilhados em redes sociais.
 
